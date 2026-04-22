@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — Erin & Riju</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #FAF6EF;
+    --cream: #F2EAD8;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A0;
+    --gold-dark: #8B6914;
+    --charcoal: #2C2C2C;
+    --sage: #7A8C6E;
+    --blush: #D9B8A8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.2rem 2rem;
+    background: rgba(250,246,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    animation: slideDown 1s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+  }
+
+  nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  nav a:hover { color: var(--gold-dark); }
+  nav a:hover::after { width: 100%; }
+
+  nav a.active {
+    color: var(--gold-dark);
+  }
+
+  nav a.active::after {
+    width: 100%;
+  }
+
+  /* ── HERO BANNER ── */
+  .story-hero {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #FAF6EF 0%, #F0E6D0 60%, #E8D8BC 100%);
+    padding: 8rem 2rem 3rem;
+  }
+
+  .hero-bg-cross {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px; height: 320px;
+    opacity: 0.04;
+    animation: rotateSlow 80s linear infinite;
+  }
+
+  @keyframes rotateSlow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+    animation: breathe 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes breathe {
+    0%,100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+    50%      { opacity: 1;   transform: translate(-50%,-50%) scale(1.15); }
+  }
+
+  .petal {
+    position: absolute;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: radial-gradient(ellipse, var(--blush), transparent);
+    opacity: 0;
+    animation: petalFall linear infinite;
+  }
+
+  @keyframes petalFall {
+    0%   { opacity: 0;   transform: translateY(-20px) rotate(0deg) translateX(0px); }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.4; }
+    100% { opacity: 0;   transform: translateY(55vh) rotate(540deg) translateX(30px); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    position: relative;
+    animation: fadeUp 1.2s ease 0.2s both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1;
+    position: relative;
+    animation: fadeUp 1.2s ease 0.4s both;
+  }
+
+  .hero-title em { font-style: italic; color: var(--gold-dark); }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.8rem auto;
+    position: relative;
+    animation: fadeUp 1.2s ease 0.6s both;
+  }
+
+  .divider-line {
+    width: 70px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .divider-line.rev { background: linear-gradient(to left, transparent, var(--gold)); }
+
+  .hero-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--sage);
+    max-width: 480px;
+    line-height: 1.9;
+    position: relative;
+    animation: fadeUp 1.2s ease 0.8s both;
+  }
+
+  .hero-verse cite {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-style: normal;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-top: 0.6rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+    position: relative;
+  }
+
+  .spine {
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      var(--gold-light) 8%,
+      var(--gold-light) 92%,
+      transparent 100%);
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    align-items: start;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .tl-item.from-left  { transform: translateX(-40px); }
+  .tl-item.from-right { transform: translateX(40px); }
+  .tl-item.visible    { opacity: 1; transform: translateX(0); }
+
+  .tl-left  { grid-column: 1; padding-right: 2rem; text-align: right; }
+  .tl-right { grid-column: 3; padding-left: 2rem; text-align: left; }
+
+  .tl-node {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.2rem;
+  }
+
+  .node-ring {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ivory);
+    transition: border-color 0.4s, box-shadow 0.4s;
+  }
+
+  .tl-item.visible .node-ring {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.12), 0 0 20px rgba(201,168,76,0.15);
+  }
+
+  .node-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    transition: transform 0.4s;
+  }
+
+  .tl-item.visible .node-dot { transform: scale(1.2); }
+
+  .tl-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .tl-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+  }
+
+  .tl-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+  }
+
+  .tl-item.visible .tl-card::before { transform: scaleX(1); }
+
+  .tl-left .tl-card::after {
+    content: '';
+    position: absolute;
+    top: 1.5rem; right: -7px;
+    width: 14px; height: 14px;
+    background: white;
+    border-top: 1px solid rgba(201,168,76,0.18);
+    border-right: 1px solid rgba(201,168,76,0.18);
+    transform: rotate(45deg);
+  }
+
+  .tl-right .tl-card::after {
+    content: '';
+    position: absolute;
+    top: 1.5rem; left: -7px;
+    width: 14px; height: 14px;
+    background: white;
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    border-left: 1px solid rgba(201,168,76,0.18);
+    transform: rotate(45deg);
+  }
+
+  .card-chapter {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+
+  .card-title em { font-style: italic; color: var(--gold-dark); }
+
+  .card-text {
+    font-size: 0.84rem;
+    line-height: 1.85;
+    color: #777;
+  }
+
+  .card-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .card-photo {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--cream), #EAD9C0);
+    border: 1px dashed rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: rgba(139,105,20,0.5);
+  }
+
+  .card-photo span { font-size: 1.5rem; opacity: 0.4; }
+
+  /* ── CLOSING ── */
+  .closing {
+    text-align: center;
+    padding: 3rem 2rem 5rem;
+    background: linear-gradient(to bottom, var(--ivory), var(--cream));
+  }
+
+  .closing-ornament {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .orn-line {
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-light));
+  }
+
+  .orn-line.rev { background: linear-gradient(to left, transparent, var(--gold-light)); }
+
+  .orn-symbol {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+  }
+
+  .closing-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    color: var(--charcoal);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .closing-names em { font-style: italic; color: var(--gold-dark); }
+
+  .closing-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .closing-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--sage);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.9;
+  }
+
+  .closing-verse cite {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-style: normal;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-top: 0.6rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 620px) {
+    nav { gap: 1rem; flex-wrap: wrap; padding: 0.8rem; }
+    nav a { font-size: 0.6rem; }
+
+    .spine { left: 24px; }
+
+    .tl-item {
+      grid-template-columns: 36px 1fr;
+      grid-template-rows: auto;
+    }
+
+    .tl-item.from-left,
+    .tl-item.from-right { transform: translateX(20px); }
+
+    .tl-node  { grid-column: 1; grid-row: 1; padding-top: 1rem; }
+    .tl-left  { grid-column: 2; grid-row: 1; padding-right: 0; padding-left: 1rem; text-align: left; }
+    .tl-right { grid-column: 2; grid-row: 1; padding-left: 1rem; }
+    .tl-empty { display: none; }
+
+    .tl-left .tl-card::after,
+    .tl-right .tl-card::after { display: none; }
+
+    .node-ring { width: 32px; height: 32px; }
+    .node-dot  { width: 8px; height: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="our-story.html" class="active">Our Story</a>
+  <a href="index.html#details">Details</a>
+  <a href="index.html#gallery">Gallery</a>
+  <a href="index.html#rsvp">RSVP</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="story-hero">
+  <div class="glow"></div>
+
+  <svg class="hero-bg-cross" viewBox="0 0 200 200" fill="none">
+    <rect x="88" y="10" width="24" height="180" rx="2" fill="#C9A84C"/>
+    <rect x="10" y="68" width="180" height="24" rx="2" fill="#C9A84C"/>
+    <circle cx="100" cy="100" r="92" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
+    <circle cx="100" cy="100" r="72" stroke="#C9A84C" stroke-width="0.4" fill="none"/>
+  </svg>
+
+  <div class="petal" style="left:8%;  width:8px;  height:11px; animation-duration:9s;  animation-delay:0s;"></div>
+  <div class="petal" style="left:22%; width:6px;  height:9px;  animation-duration:12s; animation-delay:2s;"></div>
+  <div class="petal" style="left:50%; width:9px;  height:13px; animation-duration:8s;  animation-delay:1s;"></div>
+  <div class="petal" style="left:70%; width:7px;  height:10px; animation-duration:11s; animation-delay:3s;"></div>
+  <div class="petal" style="left:88%; width:6px;  height:8px;  animation-duration:10s; animation-delay:0.5s;"></div>
+
+  <p class="hero-eyebrow">How It All Began</p>
+  <h1 class="hero-title">Our <em>Story</em></h1>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span style="color:var(--gold); font-size:1rem;">✞</span>
+    <div class="divider-line rev"></div>
+  </div>
+
+  <p class="hero-verse">
+    "I have found the one whom my soul loves."
+    <cite>Song of Solomon 3:4</cite>
+  </p>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section class="timeline-section">
+  <div class="spine"></div>
+
+  <!-- 1 · First Meeting — LEFT -->
+  <div class="tl-item from-left">
+    <div class="tl-left">
+      <div class="tl-card">
+        <span class="card-icon">🕊️</span>
+        <p class="card-chapter">Chapter One</p>
+        <h2 class="card-title">The <em>First Meeting</em></h2>
+        <p class="card-text">Two souls, guided by grace, crossed paths in the most unexpected of places. A shared smile, a gentle word — neither knew this was the beginning of something eternal.</p>
+        <div class="card-photo"><span>📷</span> Add your photo here</div>
+      </div>
+    </div>
+    <div class="tl-node"><div class="node-ring"><div class="node-dot"></div></div></div>
+    <div class="tl-empty"></div>
+  </div>
+
+  <!-- 2 · Growing in Faith — RIGHT -->
+  <div class="tl-item from-right">
+    <div class="tl-empty"></div>
+    <div class="tl-node"><div class="node-ring"><div class="node-dot"></div></div></div>
+    <div class="tl-right">
+      <div class="tl-card">
+        <span class="card-icon">🙏</span>
+        <p class="card-chapter">Chapter Two</p>
+        <h2 class="card-title">Built on <em>Faith</em></h2>
+        <p class="card-text">Their bond deepened through shared prayer, laughter, and a mutual love of God. Every Sunday together in worship became the cornerstone of something truly beautiful.</p>
+        <div class="card-photo"><span>📷</span> Add your photo here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 · Falling in Love — LEFT -->
+  <div class="tl-item from-left">
+    <div class="tl-left">
+      <div class="tl-card">
+        <span class="card-icon">💛</span>
+        <p class="card-chapter">Chapter Three</p>
+        <h2 class="card-title">Falling in <em>Love</em></h2>
+        <p class="card-text">What began as friendship blossomed quietly — in late-night conversations, in stolen glances, in the warmth of simply being near each other. Love arrived gently, the way God's gifts always do.</p>
+        <div class="card-photo"><span>📷</span> Add your photo here</div>
+      </div>
+    </div>
+    <div class="tl-node"><div class="node-ring"><div class="node-dot"></div></div></div>
+    <div class="tl-empty"></div>
+  </div>
+
+  <!-- 4 · The Proposal — RIGHT -->
+  <div class="tl-item from-right">
+    <div class="tl-empty"></div>
+    <div class="tl-node"><div class="node-ring"><div class="node-dot"></div></div></div>
+    <div class="tl-right">
+      <div class="tl-card">
+        <span class="card-icon">💍</span>
+        <p class="card-chapter">Chapter Four</p>
+        <h2 class="card-title">The <em>Proposal</em></h2>
+        <p class="card-text">Under a sky full of stars, Riju knelt and asked Erin to be his forever. With joy overflowing and tears of happiness, she said yes. God's timing, as always, was perfect.</p>
+        <div class="card-photo"><span>📷</span> Add your photo here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 · Forever Begins — LEFT -->
+  <div class="tl-item from-left">
+    <div class="tl-left">
+      <div class="tl-card">
+        <span class="card-icon">✞</span>
+        <p class="card-chapter">Chapter Five</p>
+        <h2 class="card-title">Forever <em>Begins</em></h2>
+        <p class="card-text">Now, surrounded by the people they love and blessed by God, Erin and Riju stand at the threshold of their greatest adventure — a life woven together in faith, grace, and love.</p>
+        <div class="card-photo"><span>📷</span> Add your photo here</div>
+      </div>
+    </div>
+    <div class="tl-node"><div class="node-ring"><div class="node-dot"></div></div></div>
+    <div class="tl-empty"></div>
+  </div>
+
+</section>
+
+<!-- ── CLOSING ── -->
+<div class="closing">
+  <div class="closing-ornament">
+    <div class="orn-line"></div>
+    <span class="orn-symbol">✦ ✞ ✦</span>
+    <div class="orn-line rev"></div>
+  </div>
+  <h2 class="closing-names">Erin Babu <em>&</em> Riju</h2>
+  <p class="closing-date">December 14, 2025</p>
+  <p class="closing-verse">
+    "What God has joined together, let no one separate."
+    <cite>Mark 10:9</cite>
+  </p>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.tl-item').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
